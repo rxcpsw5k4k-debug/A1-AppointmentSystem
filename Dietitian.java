@@ -1,13 +1,10 @@
 import java.util.List;
 
-/**
- * Dietitian Part 2, fourth distinct health professional type
- */
 public class Dietitian extends HealthProfessional{
-    private String focusArea; // e.g. weight management, diabetes nutrition
+    private String focusArea;
 
-    public Dietitian(int id, String name, List<String> days, String focus){
-        super(id,name,days);
+    public Dietitian(int id, String name, List<String> workDays, String focus){
+        super(id, name, workDays);
         this.focusArea = focus;
     }
 
