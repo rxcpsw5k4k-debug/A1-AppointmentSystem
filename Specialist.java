@@ -1,29 +1,29 @@
 import java.util.List;
 
-/**
- * Specialist doctor Part 2
- * has specific medical specialty field
- */
-public class Specialist extends HealthProfessional{
-    private String specialtyField;
+public class Nurse extends HealthProfessional{
+    private boolean canTakeBloodSample;
 
-    public Specialist(int id, String name, List<String> workDays, String specialty){
-        super(id,name,workDays);
-        this.specialtyField = specialty;
+    public Nurse(int id, String name, List<String> workDays, boolean bloodWork){
+        super(id, name, workDays);
+        this.canTakeBloodSample = bloodWork;
     }
 
-    public String getSpecialtyField(){
-        return specialtyField;
+    public Nurse(int id, String name, List<String> workDays){
+        super(id, name, workDays);
+        this.canTakeBloodSample = true;
+    }
+
+    public boolean isCanTakeBloodSample(){
+        return canTakeBloodSample;
     }
 
     @Override
     public String getRoleDescription() {
-        return "Specialist Doctor";
+        return "Registered Nurse";
     }
 
     @Override
     public String toString(){
-        String base = super.toString();
-        return base + " | Speciality area: " + specialtyField;
+        return super.toString() + " | Able to take blood sample: " + canTakeBloodSample;
     }
 }
