@@ -1,38 +1,26 @@
-/**
- * Appointment class Part4
- * Holds patient info, linked health professional, time for today only
- * implements Comparable for sorting appointments by time
- */
 public class Appointment implements Comparable<Appointment>{
     private String patientName;
-    private String patientMobile;
-    private HealthProfessional assignedProfessional;
-    private String timeSlot; // format "HH:mm", clinic slots 08:00‑16:00 every 30min
+    private String patientPhone;
+    private HealthProfessional selectedWorker;
+    private String timeSlot; 
 
-    /**
-     * Appointment constructor
-     * @param pName patient full name
-     * @param pMobile patient contact number
-     * @param hp linked health professional object
-     * @param slot time like "09:30"
-     */
-    public Appointment(String pName, String pMobile, HealthProfessional hp, String slot){
-        // simple validation: cannot create incomplete appointment
+    // 构造方法
+    public Appointment(String pName, String pPhone, HealthProfessional worker, String slot){
         if(pName == null || pName.isBlank()){
-            throw new IllegalArgumentException("Patient name can not be empty");
+            throw new IllegalArgumentException("Patient name cannot be empty");
         }
-        if(pMobile == null || pMobile.isBlank()){
-            throw new IllegalArgumentException("Patient mobile required");
+        if(pPhone == null || pPhone.isBlank()){
+            throw new IllegalArgumentException("Patient phone number is required");
         }
-        if(hp == null){
-            throw new IllegalArgumentException("Must select a health professional");
+        if(worker == null){
+            throw new IllegalArgumentException("You need to pick a health worker");
         }
         if(slot == null || slot.isBlank()){
-            throw new IllegalArgumentException("Time slot cannot be blank");
+            throw new IllegalArgumentException("Time slot cannot be empty");
         }
         this.patientName = pName;
-        this.patientMobile = pMobile;
-        this.assignedProfessional = hp;
+        this.patientPhone = pPhone;
+        this.selectedWorker = worker;
         this.timeSlot = slot;
     }
 
@@ -40,19 +28,17 @@ public class Appointment implements Comparable<Appointment>{
     public String getPatientName() {
         return patientName;
     }
-    public String getPatientMobile() {
-        return patientMobile;
+    public String getPatientPhone() {
+        return patientPhone;
     }
-    public HealthProfessional getAssignedProfessional() {
-        return assignedProfessional;
+    public HealthProfessional getSelectedWorker() {
+        return selectedWorker;
     }
     public String getTimeSlot() {
         return timeSlot;
     }
 
-    /**
-     * compareTo for sorting by time slot (Comparable interface requirement)
-     */
+
     @Override
     public int compareTo(Appointment otherAppointment) {
         return this.timeSlot.compareTo(otherAppointment.timeSlot);
@@ -61,11 +47,11 @@ public class Appointment implements Comparable<Appointment>{
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append("==== Appointment ====\n");
+        sb.append("==== Booking Info ====\n");
         sb.append("Patient Name: ").append(patientName).append("\n");
-        sb.append("Patient Mobile: ").append(patientMobile).append("\n");
-        sb.append("Appointment Time (today): ").append(timeSlot).append("\n");
-        sb.append("Assigned Health Worker -> ").append(assignedProfessional.toString()).append("\n");
+        sb.append("Patient Phone: ").append(patientPhone).append("\n");
+        sb.append("Booking Time: ").append(timeSlot).append("\n");
+        sb.append("Assigned Staff -> ").append(selectedWorker.toString()).append("\n");
         return sb.toString();
     }
 }
