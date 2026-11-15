@@ -5,7 +5,6 @@ import java.util.List;
 public class AppointmentManager {
     private ArrayList<Appointment> bookingList;
 
-    
     public static final List<String> CLINIC_TIME_SLOTS = List.of(
             "08:00","08:30","09:00","09:30","10:00","10:30",
             "11:00","11:30","12:00","12:30","13:00","13:30",
@@ -16,7 +15,6 @@ public class AppointmentManager {
         bookingList = new ArrayList<>();
     }
 
-    
     public boolean addAppointment(Appointment newBooking){
         
         if(!CLINIC_TIME_SLOTS.contains(newBooking.getTimeSlot())){
@@ -24,7 +22,7 @@ public class AppointmentManager {
             return false;
         }
 
-        
+       
         for(Appointment existBooking : bookingList){
             int existStaffId = existBooking.getSelectedWorker().getProfessionalId();
             int newStaffId = newBooking.getSelectedWorker().getProfessionalId();
@@ -71,7 +69,7 @@ public class AppointmentManager {
         return copyList;
     }
 
-    // 通过医护id+时间取消预约
+   
     public boolean cancelByStaffAndTime(int staffId, String slot){
         for(int i=0; i<bookingList.size(); i++){
             Appointment ap = bookingList.get(i);
@@ -87,6 +85,7 @@ public class AppointmentManager {
         return false;
     }
 
+    
     public boolean cancelAllByPatientPhone(String phoneNumber){
         int removeCount =0;
         for(int i = bookingList.size()-1; i >=0; i--){
@@ -105,7 +104,7 @@ public class AppointmentManager {
         }
     }
 
-    // 获取全部预约
+    
     public List<Appointment> getAllAppointments(){
         return new ArrayList<>(bookingList);
     }
