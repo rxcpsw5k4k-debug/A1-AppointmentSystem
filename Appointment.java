@@ -4,7 +4,7 @@ public class Appointment implements Comparable<Appointment>{
     private HealthProfessional selectedWorker;
     private String timeSlot; 
 
-    // 构造方法
+    
     public Appointment(String pName, String pPhone, HealthProfessional worker, String slot){
         if(pName == null || pName.isBlank()){
             throw new IllegalArgumentException("Patient name cannot be empty");
