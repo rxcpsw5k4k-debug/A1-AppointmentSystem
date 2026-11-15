@@ -1,20 +1,15 @@
 import java.util.List;
 
-/**
- * Nurse health professional Part2
- * can take blood sample as unique behaviour
- */
 public class Nurse extends HealthProfessional{
     private boolean canTakeBloodSample;
 
-    public Nurse(int id, String name, List<String> days, boolean bloodWork){
-        super(id,name,days);
+    public Nurse(int id, String name, List<String> workDays, boolean bloodWork){
+        super(id, name, workDays);
         this.canTakeBloodSample = bloodWork;
     }
 
-    // overload default constructor
-    public Nurse(int id, String name, List<String> days){
-        super(id,name,days);
+    public Nurse(int id, String name, List<String> workDays){
+        super(id, name, workDays);
         this.canTakeBloodSample = true;
     }
 
@@ -29,7 +24,6 @@ public class Nurse extends HealthProfessional{
 
     @Override
     public String toString(){
-        String s = super.toString();
-        return s + " | Able to take blood sample: " + canTakeBloodSample;
+        return super.toString() + " | Able to take blood sample: " + canTakeBloodSample;
     }
 }
